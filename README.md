@@ -77,16 +77,26 @@ copy tables in sql than it is to load arrays in php and manually insert each ind
 
 **Note:** Currently, the fixtureDb must be on the same db connection as the testDb (same server, user,
 and password). This is because loads the data by using 
-```insert into `fixtureDb`.`table` select * from `testDb`.`table`.
+```insert into `fixtureDb`.`table select * from testDb.table```.
 
 #### Usage
 
 ```php
-// @app/test/unit/_config.php
+// @app/tests/unit/_config.php
 'components' => [
     'fixture' => [
         'class' => 'amnah\yii2\test\DbToDbFixtureManager',
         'fixtureDb' => 'databasename_test',
     ],
 ]
+```
+
+```php
+// @app/tests/unit/models/UserTest.php
+protected function setUp() {
+    parent::setUp();
+
+    // load fixtures using same exact call
+    $this->loadFixtures(['tbl_user']);
+}
 ```
