@@ -1,4 +1,4 @@
-Yii2 Extend
+Yii 2 Classes
 ===============
 
 A various collection of classes.
@@ -6,7 +6,7 @@ A various collection of classes.
 * [Behaviors/SoftDelete] (#softdelete)
 * [Test/DbToDbFixtureManager] (#dbtodbfixturemanager)
 
-### Installation
+## Installation
 * Install via composer ```"amnah/yii2-classes": "dev-master"```
 
 ### SoftDelete
@@ -16,7 +16,7 @@ Before you use this, please see [this response](http://stackoverflow.com/a/25499
 if you really need this functionality.
 
 #### Usage
-* Add column ``` `delete_time` ``` (int or timestamp) to your database table
+* Add column ``` `delete_time` ``` (int or timestamp **DEFAULT NULL**) to your database table
 * Add behavior to your model
 
 ```php
@@ -26,7 +26,7 @@ public function behaviors() {
             'class' => 'amnah\yii2\behaviors\SoftDelete',
             // these are the default values, which you can omit
             'attribute' => 'delete_time',
-            'timestamp' => time(), // this is the same format as in AutoTimestamp
+            'timestamp' => null, // this is the same format as in AutoTimestamp
             'safeMode' => true, // this processes '$model->delete()' calls as soft-deletes
         ],
     ];
@@ -50,17 +50,7 @@ $model->forceDelete();
 $model->delete();
 ```
 
-* *Optional* - Add a default scope to your model to exclude soft-deleted records
-
-```php
-class Model extends ActiveRecord {
-    public static function createQuery() {
-        $condition = ["delete_time" => null];
-        $query = new \yii\db\ActiveQuery(['modelClass' => get_called_class()]);
-        return $query->andWhere($condition);
-    }
-}
-```
+Todo: scopes
 
 ### DbToDbFixtureManager
 
