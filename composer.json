@@ -1,6 +1,6 @@
 {
-    "name": "amnah/yii2-extend",
-    "description": "Yii2 extended classes",
+    "name": "amnah/yii2-classes",
+    "description": "Yii2 classes",
     "keywords": [
         "yii", "yii2",
         "soft-delete", "softdelete",
