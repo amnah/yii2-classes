@@ -50,7 +50,10 @@ $model->forceDelete();
 $model->delete();
 ```
 
-Todo: scopes
+* See guide on [scopes](https://github.com/yiisoft/yii2/blob/master/docs/guide/active-record.md#scopes)
+for querying live/deleted records
+* *Unfortunately, there doesn't seem to be an easy to implement default scope functionality at the moment.
+If anyone has ideas, please let me know*
 
 ### DbToDbFixtureManager
 
