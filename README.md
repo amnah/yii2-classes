@@ -1,13 +1,14 @@
 Yii 2 Classes
 ===============
 
-A various collection of classes.
+A various collection of classes. Install using composer
+```"amnah/yii2-classes": "dev-master"```.
+
+## Table of Contents
 
 * [Behaviors/SoftDelete] (#softdelete)
+* [Widgets/LayoutListView] (#layoutlistview)
 * [Test/DbToDbFixtureManager] (#dbtodbfixturemanager)
-
-## Installation
-* Install via composer ```"amnah/yii2-classes": "dev-master"```
 
 ### SoftDelete
 This class adds soft-delete functionality to ActiveRecord models.
@@ -54,6 +55,42 @@ $model->delete();
 for querying live/deleted records
 * *Unfortunately, there doesn't seem to be an easy to implement default scope functionality at the moment.
 If anyone has ideas, please let me know*
+
+### LayoutListView
+
+The LayoutListView class extends the default ```yii\widgets\ListView``` class by adding in views.
+Specifically, it allows you to use views to set the ```layout``` and the ```empty``` functionality.
+
+#### Usage
+
+```php
+// @app/views/list/index.php
+<?php echo LayoutListView::widget([
+    "dataProvider" => $dataProvider,
+    "layoutView" => "_list",
+    "layoutViewParams" => [
+        // variables to pass into layoutView
+    ],
+    "emptyView" => "_listEmpty",
+    "emptyViewParams" => [
+        // variables to pass into emptyView
+    ],
+    "itemView" => "_listItem",
+    "viewParams" => [
+        // variables to pass into itemView
+    ],
+]); ?>
+```
+
+```php
+// @app/views/list/_list.php
+<div>{summary}</div>
+<div>{pager}</div>
+
+<div id="listitems" class="row">
+    {items}
+</div>
+```
 
 ### DbToDbFixtureManager
 
