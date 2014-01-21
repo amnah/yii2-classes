@@ -52,7 +52,6 @@ class LayoutListView extends \yii\widgets\ListView {
                     $content = str_replace($section, $this->renderSection($section), $content);
                 }
             }
-            echo $content;
         }
         // get empty content
         else {
