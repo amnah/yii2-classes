@@ -36,7 +36,7 @@ class LayoutListView extends \yii\widgets\ListView {
     public function run() {
 
         // run normal parent implementation if view is not set
-        if (empty($this->emptyView)) {
+        if (empty($this->layoutView)) {
             parent::run();
             return;
         }
