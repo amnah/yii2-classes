@@ -43,7 +43,7 @@ class LayoutListView extends \yii\widgets\ListView {
 
         // get content from view file
         if ($this->dataProvider->getCount() > 0 || $this->showOnEmpty) {
-            $content = $this->getView()->render($this->layoutView);
+            $content = $this->getView()->render($this->layoutView, $this->layoutViewParams);
 
             // replace layout sections
             $sections = ['{summary}', '{items}', '{pager}', '{sorter}'];
