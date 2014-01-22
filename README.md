@@ -51,15 +51,16 @@ $model->forceDelete();
 $model->delete();
 ```
 
-* See guide on [scopes](https://github.com/yiisoft/yii2/blob/master/docs/guide/active-record.md#scopes)
+* See guide on [scopes]
+(https://github.com/yiisoft/yii2/blob/master/docs/guide/active-record.md#scopes)
 for querying live/deleted records
-* *Unfortunately, there doesn't seem to be an easy to implement default scope functionality at the moment.
-If anyone has ideas, please let me know*
+* *Unfortunately, there doesn't seem to be an easy to implement default scope functionality
+at the moment. If anyone has ideas, please let me know*
 
 ### LayoutListView
 
-The LayoutListView class extends the default ```yii\widgets\ListView``` class by adding in views.
-Specifically, it allows you to use views to set the ```layout``` and the ```empty``` functionality.
+The LayoutListView class extends the default ```yii\widgets\ListView``` class by adding in
+views and closures.
 
 #### Usage
 
@@ -92,6 +93,27 @@ Specifically, it allows you to use views to set the ```layout``` and the ```empt
 </div>
 ```
 
+Using closures:
+
+```php
+<?php echo LayoutListView::widget([
+    // ...
+    "layoutView" => function() {
+        return '
+            <div>{summary}</div>
+            <div>{pager}</div>
+            <div id="listitems" class="row">
+                {items}
+            </div>
+        ';
+    },
+    'emptyView' => function() {
+        return '<div>nothing found</div>';
+    },
+    // ...
+]); ?>
+```
+
 ### DbToDbFixtureManager
 
 The DbToDbFixtureManager class loads fixtures in from another database instead of from php arrays. 
@@ -105,8 +127,8 @@ Additionally, this is useful if you have lots of fixture data. It is significant
 copy tables in sql than it is to load arrays in php and manually insert each individual record 
 (which is the current implementation of DbFixtureManager).
 
-**Note:** Currently, the fixtureDb must be on the same db connection as the testDb (same server, user,
-and password). This is because loads the data by using 
+**Note:** Currently, the fixtureDb must be on the same db connection as the testDb (same server,
+user, and password). This is because loads the data by using
 ```insert into `fixtureDb`.`table select * from testDb.table```.
 
 #### Usage

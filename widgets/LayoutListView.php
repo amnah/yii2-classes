@@ -2,12 +2,14 @@
 
 namespace amnah\yii2\widgets;
 
+use Closure;
+
 class LayoutListView extends \yii\widgets\ListView {
 
     /**
-     * @var string The layout view file. This will take precedence over [[layout]]
+     * @var string|Closure The layout view or closure
      *
-     * Similarly, the sections you can set in the view are:
+     * In the view file, use the same tokens:
      * - `{summary}`: the summary section. See [[renderSummary()]].
      * - `{items}`: the list items. See [[renderItems()]].
      * - `{sorter}`: the sorter. See [[renderSorter()]].
@@ -21,7 +23,7 @@ class LayoutListView extends \yii\widgets\ListView {
     public $layoutViewParams = [];
 
     /**
-     * @var string Empty view file
+     * @var string|Closure The empty view or closure
      */
     public $emptyView;
 
@@ -41,11 +43,15 @@ class LayoutListView extends \yii\widgets\ListView {
             return;
         }
 
-        // get content from view file
+        // check for results
         if ($this->dataProvider->getCount() > 0 || $this->showOnEmpty) {
-            $content = $this->getView()->render($this->layoutView, $this->layoutViewParams);
 
-            // replace layout sections
+            // get content from closure or view
+            $content = ($this->layoutView instanceof Closure)
+                ? call_user_func($this->layoutView)
+                : $this->getView()->render($this->layoutView, $this->layoutViewParams);
+
+            // replace sections
             $sections = ['{summary}', '{items}', '{pager}', '{sorter}'];
             foreach ($sections as $section) {
                 if (strpos($content, $section) !== false) {
@@ -72,7 +78,9 @@ class LayoutListView extends \yii\widgets\ListView {
             return parent::renderEmpty();
         }
 
-        // render view with params
-        return $this->getView()->render($this->emptyView, $this->emptyViewParams);
+        // render closure/view
+        return ($this->emptyView instanceof Closure)
+            ? call_user_func($this->emptyView)
+            : $this->getView()->render($this->emptyView, $this->emptyViewParams);
     }
 }
