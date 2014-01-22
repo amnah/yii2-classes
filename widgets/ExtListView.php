@@ -4,7 +4,7 @@ namespace amnah\yii2\widgets;
 
 use Closure;
 
-class LayoutListView extends \yii\widgets\ListView {
+class ExtListView extends \yii\widgets\ListView {
 
     /**
      * @var string|Closure The layout view or closure

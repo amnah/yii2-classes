@@ -7,7 +7,7 @@ A various collection of classes. Install using composer
 ## Table of Contents
 
 * [Behaviors/SoftDelete] (#softdelete)
-* [Widgets/LayoutListView] (#layoutlistview)
+* [Widgets/ExtListView] (#extlistview)
 * [Test/DbToDbFixtureManager] (#dbtodbfixturemanager)
 
 ### SoftDelete
@@ -57,17 +57,19 @@ for querying live/deleted records
 * *Unfortunately, there doesn't seem to be an easy to implement default scope functionality
 at the moment. If anyone has ideas, please let me know*
 
-### LayoutListView
+### ExtListView
 
-The LayoutListView class extends the default ```yii\widgets\ListView``` class by adding in
+The ExtListView class extends the default ```yii\widgets\ListView``` class by adding in
 views and closures.
 
 #### Usage
 
+Using views:
+
 ```php
 // @app/views/list/index.php
-<?php echo LayoutListView::widget([
-    "dataProvider" => $dataProvider,
+<?php echo ExtListView::widget([
+    // ...
     "layoutView" => "_list",
     "layoutViewParams" => [
         // variables to pass into layoutView
@@ -76,10 +78,7 @@ views and closures.
     "emptyViewParams" => [
         // variables to pass into emptyView
     ],
-    "itemView" => "_listItem",
-    "viewParams" => [
-        // variables to pass into itemView
-    ],
+    // ...
 ]); ?>
 ```
 
@@ -96,7 +95,7 @@ views and closures.
 Using closures:
 
 ```php
-<?php echo LayoutListView::widget([
+<?php echo ExtListView::widget([
     // ...
     "layoutView" => function() {
         return '
