@@ -2,7 +2,6 @@
 
 namespace amnah\yii2\behaviors;
 
-use yii\behaviors\AutoTimestamp;
 use yii\base\Event;
 use yii\db\ActiveRecord;
 
@@ -72,7 +71,7 @@ class SoftDelete extends AutoTimestamp {
     public function remove() {
 
         // evaluate timestamp and set attribute
-        $timestamp = $this->evaluateTimestamp();
+        $timestamp = time();
         $attribute = $this->attribute;
         $this->owner->$attribute = $timestamp;
 
