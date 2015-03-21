@@ -2,7 +2,7 @@
 
 namespace amnah\yii2\behaviors;
 
-use yii\behaviors\AutoTimestamp;
+use yii\behaviors\TimestampBehavior;
 use yii\base\Event;
 use yii\db\ActiveRecord;
 
@@ -24,7 +24,7 @@ use yii\db\ActiveRecord;
  * ~~~
  * @author amnah <amnah.dev@gmail.com>
  */
-class SoftDelete extends AutoTimestamp {
+class SoftDelete extends TimestampBehavior {
 
     /**
      * @var string SoftDelete attribute
