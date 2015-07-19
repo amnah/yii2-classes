@@ -71,7 +71,7 @@ class SoftDelete extends TimestampBehavior {
     public function remove() {
 
         // evaluate timestamp and set attribute
-        $timestamp = $this->getValue();
+        $timestamp = $this->getValue(null);
         $attribute = $this->attribute;
         $this->owner->$attribute = $timestamp;
 
