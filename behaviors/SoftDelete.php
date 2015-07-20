@@ -31,13 +31,8 @@ class SoftDelete extends TimestampBehavior {
     public $attribute = "delete_time";
 
     /**
-     * @inheritdoc
-     */
-    public $timestamp;
-
-    /**
      * @var bool If true, this behavior will process '$model->delete()' as a soft-delete. Thus, the
-     *           only way to truely delete a record is to call '$model->forceDelete()'
+     *           only way to truly delete a record is to call '$model->forceDelete()'
      */
     public $safeMode = true;
 

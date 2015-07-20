@@ -27,7 +27,7 @@ public function behaviors() {
             'class' => 'amnah\yii2\behaviors\SoftDelete',
             // these are the default values, which you can omit
             'attribute' => 'delete_time',
-            'timestamp' => null, // this is the same format as in AutoTimestamp
+            'value' => null, // this is the same format as in TimestampBehavior
             'safeMode' => true, // this processes '$model->delete()' calls as soft-deletes
         ],
     ];
