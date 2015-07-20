@@ -51,11 +51,17 @@ $model->forceDelete();
 $model->delete();
 ```
 
-* See guide on [scopes]
-(https://github.com/yiisoft/yii2/blob/master/docs/guide/active-record.md#scopes)
-for querying live/deleted records
-* *Unfortunately, there doesn't seem to be an easy to implement default scope functionality
-at the moment. If anyone has ideas, please let me know*
+* (Optional) Update model by adding default condition/scope to select only non-deleted records
+
+```php
+class Customer extends ActiveRecord
+{
+    public static function find()
+    {
+        return parent::find()->where(['delete_time' => null]);
+    }
+}
+```
 
 ### ExtListView
 
